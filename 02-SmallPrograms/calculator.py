@@ -32,6 +32,7 @@ def get_operation():
 
 
 def main():
+    #main function
     print("Welcome to Calculator!")
     numbers = get_num()
     operation = get_operation()
