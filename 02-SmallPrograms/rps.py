@@ -17,12 +17,12 @@ def display_winner(player, computer):
         (player == 'spock' and computer == 'rock') or
         (player == 'spock' and computer == 'scissors')):
         prompt('You win!')
-    elif (player == computer):
+    elif player == computer:
         prompt("It's a tie!")
     else:
         prompt('Computer wins! :(')
 
-while True: 
+while True:
     prompt(f'Choose one: {', '.join(VALID_CHOICES) }')
     choice = input().lower()
 
