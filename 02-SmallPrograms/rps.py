@@ -1,21 +1,23 @@
+""" Scissors cuts Paper covers Rock crushes Lizard poisons
+    Spock smashes Scissors decapitates Lizard eats Paper disproves
+    Spock vaporizes Rock crushes Scissors.
+"""
 import random
 
 VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
+
 
 def prompt(message):
     print(f'==> {message}')
 
 def display_winner(player, computer):
-    if ((player == 'rock' and computer == 'scissors') or
-        (player == 'rock' and computer ==  'lizard') or
-        (player == 'paper' and computer == 'rock') or
-        (player == 'paper' and computer == 'spock') or
-        (player == 'scissors' and computer == 'paper') or
-        (player == 'scissors' and computer == 'lizard') or
-        (player == 'lizard' and computer == 'spock') or
-        (player == 'lizard' and computer == 'paper') or
-        (player == 'spock' and computer == 'rock') or
-        (player == 'spock' and computer == 'scissors')):
+    winning_combos = {'rock': ['scissors','lizard'],
+                      'paper': ['rock','spock'],
+                      'scissors': ['paper', 'lizar'],
+                      'lizard': ['spock', 'paper'],
+                      'spock': ['rock', 'scissors']}
+
+    if computer in winning_combos[player]:
         prompt('You win!')
     elif player == computer:
         prompt("It's a tie!")
