@@ -5,22 +5,37 @@ VALID_CHOICES = ['rock', 'paper', 'scissors']
 def prompt(message):
     print(f'==> {message}')
 
-prompt(f'Choose one: {', '.join(VALID_CHOICES) }')
-choice = input().lower()
+def display_winner(player, computer):
+    if ((player == 'rock' and computer == 'scissors') or
+        (player == 'paper' and computer == 'rock') or
+        (player == 'scissors' and computer == 'paper')):
+        prompt('You win!')
+    elif (player == computer):
+        prompt("It's a tie!")
+    else:
+        prompt('Computer wins! :(')
 
-while choice not in VALID_CHOICES:
-    prompt('That is not a valid choice. Try again')
+while True: 
+    prompt(f'Choose one: {', '.join(VALID_CHOICES) }')
     choice = input().lower()
 
-computer_choice = random.choice(VALID_CHOICES)
+    while choice not in VALID_CHOICES:
+        prompt('That is not a valid choice. Try again')
+        choice = input().lower()
 
-prompt(f'You chose {choice}. The computer chose {computer_choice}')
+    computer_choice = random.choice(VALID_CHOICES)
 
-if ((choice == 'rock' and computer_choice == 'scissors') or
-    (choice == 'paper' and computer_choice == 'rock') or
-    (choice == 'scissors' and computer_choice == 'paper')):
-    prompt('You win!')
-elif (choice == computer_choice):
-    prompt("It's a tie!")
-else:
-    prompt('Computer wins! :(')
+    prompt(f'You chose {choice}. The computer chose {computer_choice}')
+
+    display_winner(choice, computer_choice)
+
+    prompt('Play again? (y/n)?')
+    answer = input().lower()
+    while True:
+        if answer.startswith('n') or answer.startswith('y'):
+            break
+        prompt('Please enter "y" or "no".')
+        answer = input().lower()
+
+    if answer[0] == 'n':
+        break
